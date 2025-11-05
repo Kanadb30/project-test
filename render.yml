@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: gnuplot-app
+    name: project-test
     env: python
     buildCommand: |
       apt-get update && apt-get install -y gnuplot
