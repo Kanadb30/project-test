@@ -23,7 +23,7 @@
             const gnuplotCode = `# Generated for "${inputFileName}"
 set terminal ${outputType}
 set output "${outputFile}"
-plot "${dataFile}" using 2:xtic(1)
+plot "${inputFileName}" using 2:xtic(1)
 reset
 `;
             
