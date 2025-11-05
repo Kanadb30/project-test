@@ -1,8 +1,9 @@
 services:
   - type: web
-    name: project-test
+    name: project-test # Your Render service name (from dashboard URL)
     env: python
     buildCommand: |
-      apt-get update && apt-get install -y gnuplot
-      pip install -r requirements.txt
+      apt-get update -y
+      apt-get install -y gnuplot
+      pip install -r requirments.txt
     startCommand: python main.py
