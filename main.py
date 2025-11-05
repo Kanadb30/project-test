@@ -17,6 +17,7 @@ def index():
 def generate_plot():
     try:
         # Get uploaded file and code
+        input_file_name = request.form["input_file_name"]
         data_file = request.files["data_file"]
         gnuplot_code = request.form["gnuplot_code"]
         output_type = request.form["output_type"]
@@ -24,7 +25,7 @@ def generate_plot():
         
         # Create temp dir for all files (cross-platform)
         with tempfile.TemporaryDirectory() as temp_dir:
-            data_path = os.path.join(temp_dir, "input.dat")
+            data_path = os.path.join(temp_dir, input_file_name)
             script_path = os.path.join(temp_dir, "script.gp")
             output_path = os.path.join(temp_dir, output_filename)
             
