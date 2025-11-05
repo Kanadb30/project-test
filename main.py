@@ -9,7 +9,7 @@ app = Flask(__name__)
 @app.route("/")
 def index():
     # Serve your HTML
-    with open("index.html", "r") as f:
+    with open("try.html", "r") as f:
         return f.read()
 
 @app.route("/generate", methods=["POST"])
