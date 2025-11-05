@@ -23,7 +23,7 @@
             const gnuplotCode = `# Generated for "${inputFileName}"
 set terminal ${outputType}
 set output "${outputFile}"
-plot "${inputFileName}" using 2:xtic(1)
+plot "${dataFile}" using 2:xtic(1)
 reset
 `;
             
@@ -37,6 +37,7 @@ reset
             formData.append("gnuplot_code", gnuplotCode);
             formData.append("output_type", outputType);
             formData.append("output_file", outputFile);
+            formData.append("input_file_name", inputFileName);
             
             fetch("/generate", {
                 method: "POST",
