@@ -1,23 +1,31 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>GNUplot Generator</title>
+    <style>
+        body { font-family: monospace; margin: 20px; }
+        pre { background: #f4f4f4; padding: 10px; border: 1px solid #ddd; }
+        button { padding: 10px; margin: 5px; }
+        #plot-output { margin-top: 20px; }
+        #plot-output img, #plot-output embed { max-width: 100%; border: 1px solid #ddd; }
+    </style>
     <script src="src.js"></script>
 </head>
 <body>
-   <h2>Upload Data File & Generate Plot</h2>
+    <h2>Upload Data File & Generate Plot</h2>
     
-    
+    <!-- File Upload -->
     <label for="data_file">Data File (TXT/CSV):</label>
     <input type="file" id="data_file" accept=".txt,.csv" required>
     <br><br>
     
-   
+    <!-- Your Original Inputs -->
     <label for="output_type">Output Type:</label>
     <select id="output_type">
-        <option value="pngcairo size 800,600">PNG</option>
-        <option value="pdfcairo size 8in,6in">PDF</option>
+        <option value='pngcairo size 800,600'>PNG</option>
+        <option value='pdfcairo size 8in,6in'>PDF</option>
     </select>
     <br><br>
 
@@ -31,6 +39,7 @@
         <h3>Plot Output:</h3>
         <p id="plot-placeholder">Plot will appear here after generation.</p>
     </div>
+
     
 </body>
 </html>

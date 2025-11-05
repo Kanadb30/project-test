@@ -1,4 +1,7 @@
-function generate() {
+
+        function generate() {
+            console.log("Button clicked!");  // Debug: Check console for this
+            
             const dataFile = document.getElementById("data_file").files[0];
             const outputType = document.getElementById("output_type").value;
             
@@ -7,11 +10,13 @@ function generate() {
                 return;
             }
             
+            console.log("File uploaded:", dataFile.name);  // Debug
+            
             // Show loading
             document.getElementById("plot-placeholder").innerHTML = "Generating plot...";
             
-            // Generate GNUplot code (your original logic)
-            const inputFileName = dataFile.name.replace(/\.[^/.]+$/, ""); // Remove extension
+            // Generate GNUplot code
+            const inputFileName = dataFile.name.replace(/\.[^/.]+$/, "");
             const extension = outputType.includes("png") ? "png" : "pdf";
             const outputFile = `${inputFileName}.${extension}`;
             
@@ -22,15 +27,16 @@ plot "${inputFileName}" using 2:xtic(1)
 reset
 `;
             
-            // Display code
+            // Display code (this should ALWAYS show if file uploaded)
             document.getElementById("output_code").textContent = gnuplotCode;
+            console.log("Code generated:", gnuplotCode);  // Debug
             
-            // Send to backend via FormData
+            // Send to backend
             const formData = new FormData();
             formData.append("data_file", dataFile);
             formData.append("gnuplot_code", gnuplotCode);
             formData.append("output_type", outputType);
-            formData.append("output_file", outputFile);  // Pass output filename for backend
+            formData.append("output_file", outputFile);
             
             fetch("/generate", {
                 method: "POST",
@@ -38,8 +44,8 @@ reset
             })
             .then(response => response.json())
             .then(data => {
+                console.log("Backend response:", data);  // Debug
                 if (data.success) {
-                    // Display image or PDF
                     if (extension === "png") {
                         document.getElementById("plot-placeholder").innerHTML = 
                             `<img src="data:image/png;base64,${data.base64_image}" alt="Generated Plot">`;
@@ -52,7 +58,7 @@ reset
                 }
             })
             .catch(error => {
-                document.getElementById("plot-placeholder").innerHTML = `Error: ${error}`;
                 console.error("Fetch error:", error);
+                document.getElementById("plot-placeholder").innerHTML = `Error: ${error}`;
             });
         }
