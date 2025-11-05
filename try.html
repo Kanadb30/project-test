@@ -1,0 +1,36 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="src.js"></script>
+</head>
+<body>
+   <h2>Upload Data File & Generate Plot</h2>
+    
+    
+    <label for="data_file">Data File (TXT/CSV):</label>
+    <input type="file" id="data_file" accept=".txt,.csv" required>
+    <br><br>
+    
+   
+    <label for="output_type">Output Type:</label>
+    <select id="output_type">
+        <option value="pngcairo size 800,600">PNG</option>
+        <option value="pdfcairo size 8in,6in">PDF</option>
+    </select>
+    <br><br>
+
+    <button onclick="generate()">Generate Plot</button>
+    <br><br>
+    
+    <h3>Generated GNUplot Code:</h3>
+    <pre><code id="output_code"># Upload a file and click Generate</code></pre>
+    
+    <div id="plot-output">
+        <h3>Plot Output:</h3>
+        <p id="plot-placeholder">Plot will appear here after generation.</p>
+    </div>
+    
+</body>
+</html>
